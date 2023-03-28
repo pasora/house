@@ -79,7 +79,7 @@ flowchart LR
     thermoHidrometer1["温湿度センサー屋外用\nMKN7512F\nAiSEG2と無線接続"]
   end
   subgraph living[2F リビング]
-    ac1[エアコン\nS80ZTAXV-W] -- JEM-A --- jemaAdapter1[IP/JEM-A アダプタ\nHF-JA2-W]
+    ac1[エアコン\nS80ZTAXV-W\nWi-Fi接続してAiSEG2と連携]
     thermoHidrometer2["温湿度センサー屋内用\nMKN7511W\nAiSEG2と無線接続"]
     multimediaOutlet4([マルチメディアコンセント 4\n電話端子付]) -- Ethernet --- homeNavigationServer[ホームナビゲーション本体\nHF-MC10A2GE]
     emergencyOutlet2["停電用コンセント\n(パワーコンディショナ)"]
@@ -109,7 +109,6 @@ flowchart LR
   router1lan4 -- Ethernet --- hems
   switch1port1
   enefarm[エネファーム\nFC-70LR13T] -- Ethernet ---- switch1port3
-  jemaAdapter1 -- Ethernet --- switch1port4
   switch1port6 -- Ethernet ----- switch4port1
   interphoneParent -- Ethernet ---- switch2port2
   interphoneMonitor --- interphoneParent
