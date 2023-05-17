@@ -28,7 +28,7 @@ flowchart LR
       end
       subgraph switch1[スイッチングハブ1 LXW-10G2/2G4]
         switch1port5[ポート5\n10GBASE-T]
-        switch1port6([ポート6\n10GBASE-T])
+        switch1port6[ポート6\n10GBASE-T]
         switch1port1([ポート1\n2.5GBASE-T\n子供部屋1へ])
         switch1port2([ポート2\n2.5GBASE-T\n子供部屋2へ])
         switch1port3([ポート3\n2.5GBASE-T])
@@ -40,12 +40,12 @@ flowchart LR
     subgraph switch3[スイッチングハブ3 TL-SG508 施主支給]
       switch3port1[ポート1\n1000BASE-T]
       switch3port2[ポート2\n1000BASE-T]
-      switch3port3[ポート3\n1000BASE-T]
+      switch3port3([ポート3\n1000BASE-T])
       switch3port4([ポート4\n1000BASE-T])
-      switch3port5[ポート5\n1000BASE-T]
-      switch3port6[ポート6\n1000BASE-T]
-      switch3port7[ポート7\n1000BASE-T]
-      switch3port8[ポート8\n1000BASE-T]
+      switch3port5([ポート5\n1000BASE-T])
+      switch3port6([ポート6\n1000BASE-T])
+      switch3port7([ポート7\n1000BASE-T])
+      switch3port8([ポート8\n1000BASE-T])
     end
     subgraph additionalInfoPanelboard[増設用情報分電盤 COM-S00G8N]
       subgraph switch4[スイッチングハブ4 BS-MP2008]
@@ -60,10 +60,6 @@ flowchart LR
       end
     end
     panelboard[スマートコスモ]
-    poeAdapter1[送電装置]
-    poeAdapter2[送電装置]
-    poeAdapter3[送電装置]
-    poeAdapter4[送電装置]
     energyGateway[エナジーインテリジェントゲートウェイ\n計測ユニット KP-MU1P-M]
   end
   subgraph workspace[1F 書斎]
@@ -79,7 +75,7 @@ flowchart LR
     thermoHidrometer1["温湿度センサー屋外用\nMKN7512F\nAiSEG2と無線接続"]
   end
   subgraph living[2F リビング]
-    ac1[エアコン\nS80ZTAXV-W\nWi-Fi接続してAiSEG2と連携]
+    ac1[エアコン\nS80ZTAXV-W]
     thermoHidrometer2["温湿度センサー屋内用\nMKN7511W\nAiSEG2と無線接続"]
     multimediaOutlet4([マルチメディアコンセント 4\n電話端子付]) -- Ethernet --- homeNavigationServer[ホームナビゲーション本体\nHF-MC10A2GE]
     emergencyOutlet2["停電用コンセント\n(パワーコンディショナ)"]
@@ -101,7 +97,7 @@ flowchart LR
   end
 
   ftth[FTTH] --- onu
-  itscom[イッツコム] ---- booster
+  antenna[アンテナ] ---- booster
   router1wan -- Ethernet --- onu
   router1lan1 -- Ethernet --- switch1port5
   router1lan2 -- Ethernet --- switch2port1
@@ -109,17 +105,17 @@ flowchart LR
   router1lan4 -- Ethernet --- hems
   switch1port1
   enefarm[エネファーム\nFC-70LR13T] -- Ethernet ---- switch1port3
-  switch1port6 -- Ethernet ----- switch4port1
+  switch1port6 -- Ethernet ---- switch4port1
   interphoneParent -- Ethernet ---- switch2port2
   interphoneMonitor --- interphoneParent
   interphoneChild[ドアホン\nVL-MWH700] --- interphoneParent
-  switch3port2 -- Ethernet --- panelboard
+  switch3port2 -- Ethernet ---- panelboard
   switch3port3 -- Ethernet --- energyGateway
-  switch3port4 -- Ethernet ---- v2hNetworkAdapter
-  switch3port5 -- Ethernet --- poeAdapter1[送電装置] -- "Ethernet (PoE)" --- camera1[センサーカメラ\nVL-CD215]
-  switch3port6 -- Ethernet --- poeAdapter2[送電装置] -- "Ethernet (PoE)" --- camera2[センサーカメラ\nVL-CD215]
-  switch3port7 -- Ethernet --- poeAdapter3[送電装置] -- "Ethernet (PoE)" --- camera3[センサーカメラ\nVL-CD215]
-  switch3port8 -- Ethernet --- poeAdapter4[送電装置] -- "Ethernet (PoE)" --- camera4[センサーカメラ\nVL-CD215]
+  switch3port4 -- Ethernet ----- v2hNetworkAdapter
+  switch3port5 -- Ethernet ----- camera1[センサーカメラ\nVL-CX500X]
+  switch3port6 -- Ethernet ----- camera2[センサーカメラ\nVL-CX500X]
+  switch3port7 -- Ethernet ----- camera3[センサーカメラ\nVL-CX500X]
+  switch3port8 -- Ethernet ----- camera4[センサーカメラ\nVL-CX500X]
   energyGateway --- powerConditioner
   panelboard --- powerConditioner[パワーコンディショナ]
   panelboard --- gasMeter[ガスパルスメーター]
